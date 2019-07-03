@@ -1,0 +1,24 @@
+{
+  "name": "bitbucket-analytics",
+  "version": "1.0.0",
+  "description": "",
+  "main": "run.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/defly/bitbucket-analytics.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/defly/bitbucket-analytics/issues"
+  },
+  "homepage": "https://github.com/defly/bitbucket-analytics#readme",
+  "dependencies": {
+    "bitbucket": "^1.15.0",
+    "csv-write-stream": "^2.0.0",
+    "minimist": "^1.2.0"
+  }
+}
