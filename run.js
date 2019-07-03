@@ -9,7 +9,7 @@ const clientOptions = {
   headers: {},
   hideNotice: true,
   options: {
-    timeout: 10 * 1000,
+    timeout: 10 * 1000
   }
 };
 const bitbucket = new Bitbucket(clientOptions);
@@ -36,8 +36,6 @@ const run = async () => {
   });
 
   try {
-    writer.pipe(process.stdout);
-
     let { data } = await bitbucket.pullrequests.list({
       username,
       repo_slug,
@@ -45,6 +43,7 @@ const run = async () => {
       pagelen: 50
     });
 
+    writer.pipe(process.stdout);
     write(data);
 
     while (bitbucket.hasNextPage(data)) {
@@ -52,11 +51,10 @@ const run = async () => {
       write(nextData);
       data = nextData;
     }
+    writer.end();
   } catch (e) {
     console.error(e);
-  } finally {
-    writer.end();
   }
 };
 
-run()
+run();
