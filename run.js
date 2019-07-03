@@ -1,6 +1,5 @@
 const Bitbucket = require('bitbucket');
 const csvWriter = require('csv-write-stream');
-const fs = require('fs');
 const { login, password, repo, state } = require('minimist')(
   process.argv.slice(2)
 );
@@ -54,10 +53,10 @@ const run = async () => {
       data = nextData;
     }
   } catch (e) {
-    throw new Error(e);
+    console.error(e);
   } finally {
     writer.end();
   }
 };
 
-run();
+run()
