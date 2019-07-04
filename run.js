@@ -15,15 +15,19 @@ const clientOptions = {
 const bitbucket = new Bitbucket(clientOptions);
 const [username, repo_slug] = repo.split('/');
 
-const format = r => ({
-  id: r.id,
-  author: r.author.nickname,
-  link: r.links.html.href,
-  title: r.title,
-  source_branch: r.source.branch.name,
-  state: r.state,
-  created_on: r.created_on,
-  updated_on: r.updated_on
+const format = pr => ({
+  id: pr.id,
+  author: pr.author.nickname,
+  link: pr.links.html.href,
+  title: pr.title,
+  source_branch: pr.source.branch.name,
+  destination_branch: pr.destination.branch.name,
+  state: pr.state,
+  created_on: pr.created_on,
+  updated_on: pr.updated_on,
+  duration: Math.ceil(
+    (+new Date(pr.updated_on) - new Date(pr.created_on)) / 1000
+  )
 });
 
 const writer = csvWriter();
